@@ -3,7 +3,7 @@
 // Author      : ByteMe Team
 // Version     :
 // Copyright   : CSCI 150
-// Description : Hello World in C++, Ansi-style
+// Description : C++, Ansi-style
 //============================================================================
 
 #include <iostream>
