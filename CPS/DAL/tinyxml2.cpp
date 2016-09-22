@@ -22,12 +22,12 @@ distribution.
 */
 
 #include "tinyxml2.h"
-#   include <cstddef>
-#   include <cstdarg>
-#   include <stddef.h>
-#   include <stdarg.h>
+#include <cstddef>
+#include <cstdarg>
+#include <stddef.h>
+#include <stdarg.h>
 #include "stdarg.h"
-#include <new>		// yes, this one new style header, is in the Android SDK.
+#include <new>		// new style header, is in the Android SDK.
 
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1400 ) && (!defined WINCE)
