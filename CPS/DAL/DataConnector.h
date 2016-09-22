@@ -13,25 +13,32 @@
 
 using namespace std;
 using namespace tinyxml2;
+static const char* path ="DAL/Data/ParkingStructure.xml";
 
 #ifndef XMLCheckResult
 #define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); /*return a_eResult;*/ }
 #endif
+
+static const char* xml =
+					"<?xml version=\"1.0\"?>"
+					"<!DOCTYPE PLAY SYSTEM \"\ParkingStructure.dtd\">"
+					;
+
 
 
 class DataConnector {
 
 
 public:
-	DataConnector();
-	virtual ~DataConnector();
+	DataConnector(){};
+	virtual ~DataConnector(){};
 
 	std::list<Spot> Query(int x) {
 	    std::list<Spot> spotsList;
 
 	    XMLDocument xmlDoc;
-	    XMLError eResult = xmlDoc.LoadFile(this->path);
-
+	    XMLError eResult = xmlDoc.LoadFile(path);
+	    //xmlDoc.Parse(xml);
 	    XMLCheckResult(eResult);
 	    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
 
@@ -65,12 +72,7 @@ public:
 	    return spotsList;
 	  }
 
-private:
-	const char* path ="DAL/Data/ParkingStructure.xml";
-	static const char* xml =
-					"<?xml version=\"1.0\"?>"
-					"<!DOCTYPE PLAY SYSTEM \"\ParkingStructure.dtd\">"
-					;
+
 
 };
 

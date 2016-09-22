@@ -12,8 +12,10 @@
 
 class Spot {
 public:
-	Spot();
-	virtual ~Spot();
+	Spot(){
+		this->id =0;
+	this->status=0;};
+
 	void SetId(int id) {
 	  this->id = id;
 	}

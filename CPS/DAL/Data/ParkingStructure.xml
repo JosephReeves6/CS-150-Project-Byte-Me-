@@ -1,8 +1,5 @@
-<?xml version="1.0"?>
-<!DOCTYPE PLAY SYSTEM "ParkingStructure.dtd">
-<TITLE>Parking Data</TITLE>
-
 <P1>
+ 	<Spot ID="1" Status="0"/>
     <Spot ID="2" Status="0"/>
     <Spot ID="3" Status="1"/>
     <Spot ID="4" Status="0"/>

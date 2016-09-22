@@ -8,24 +8,26 @@
 
 #include <iostream>
 #include <vector>
-#include "DAL\tinyxml2.h"
+#include <iterator>
+#include <list>
+#include "BLL/DataRetriever.h"
+#include "BLL/Spot.h"
 
-#ifndef XMLCheckResult
-	#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); return a_eResult; }
-#endif
+
 
 using namespace std;
-using namespace tinyxml2;
-
-const char* path ="DAL/Data/ParkingStructure.xml";
-static const char* xml =
-				"<?xml version=\"1.0\"?>"
-				"<!DOCTYPE PLAY SYSTEM \"\ParkingStructure.dtd\">"
-				;
 
 int main() {
+	DataRetriever findSpot;
+	Spot spot;
+	list<Spot> spotsList = findSpot.Query(5);
 
+	  for(list<Spot>::iterator it = spotsList.begin(); it!= spotsList.end(); ++it) {
+	    Spot spot = *it;
+	    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
+	  }
 
+/*
 		XMLDocument xmlDoc;
 		xmlDoc.Parse( xml );
 		XMLError eResult = xmlDoc.LoadFile(path);
@@ -55,9 +57,6 @@ int main() {
 
 		XMLCheckResult(eResult);
 		cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
-
-
-
-
+*/
 	return 0;
 }
