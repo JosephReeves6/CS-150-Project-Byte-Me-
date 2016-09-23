@@ -39,7 +39,7 @@ class Car
   string getType();
 
   //getSize() returns the size memebr variable
-  string getSize();
+  int getSize();
 };
 
 #endif
