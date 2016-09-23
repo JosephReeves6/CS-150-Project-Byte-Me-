@@ -21,11 +21,16 @@ public:
 	DataRetriever(){};
 
 	list<Spot> Query(int x) {
-
 		DataConnector temp;
-		this->spotsList = temp.Query(x);
-	    return spotsList;
+	    return temp.Query(x);
 	  }
+
+	list<Spot> GetAllSpots(){
+		DataConnector temp;
+		this->spotsList = temp.GetAllSpots();
+		return spotsList;
+	}
+
 
 
 private:

@@ -18,13 +18,12 @@ static const char* path ="DAL/Data/ParkingStructure.xml";
 #ifndef XMLCheckResult
 #define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); /*return a_eResult;*/ }
 #endif
-
+/*
 static const char* xml =
 					"<?xml version=\"1.0\"?>"
 					"<!DOCTYPE PLAY SYSTEM \"\ParkingStructure.dtd\">"
 					;
-
-
+*/
 
 class DataConnector {
 
@@ -33,14 +32,49 @@ public:
 	DataConnector(){};
 	virtual ~DataConnector(){};
 
-	std::list<Spot> Query(int x) {
-	    std::list<Spot> spotsList;
+		void MakeConnection(XMLDocument &xmlDoc){
+
+		    XMLError eResult = xmlDoc.LoadFile(path);
+		    //xmlDoc.Parse(xml);
+		    XMLCheckResult(eResult);
+		    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+		}
+		list<Spot> GetAllSpots(){
+			 XMLDocument xmlDoc;
+			 MakeConnection(xmlDoc);
+
+			    XMLNode * pRoot = xmlDoc.FirstChild();
+			    XMLElement * pListElement = pRoot->FirstChildElement("Spot");
+			    list<Spot> spotsList;
+			    const char * szAttributeTextID = 0;
+			    const char * szAttributeTextStatus = 0;
+
+			    while (pListElement != 0) {
+
+			      szAttributeTextID = pListElement->Attribute("ID");
+			      if (szAttributeTextID == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      int id = std::atoi (szAttributeTextID);
+
+			      szAttributeTextStatus = pListElement->Attribute("Status");
+			      if (szAttributeTextStatus == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      int status = std::atoi (szAttributeTextStatus);
+			        Spot p;
+			        p.SetStatus(status);
+			        p.SetId(id);
+			        spotsList.push_back(p);
+
+			      pListElement = pListElement->NextSiblingElement("Spot");
+			    }
+
+			    return spotsList;
+		}
+
+
+		list<Spot> Query(int x) {
+	    list<Spot> spotsList;
 
 	    XMLDocument xmlDoc;
-	    XMLError eResult = xmlDoc.LoadFile(path);
-	    //xmlDoc.Parse(xml);
-	    XMLCheckResult(eResult);
-	    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+	    MakeConnection(xmlDoc);
 
 	    XMLNode * pRoot = xmlDoc.FirstChild();
 

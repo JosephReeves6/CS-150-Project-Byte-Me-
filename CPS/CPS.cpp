@@ -26,7 +26,12 @@ int main() {
 	    Spot spot = *it;
 	    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
 	  }
-
+//test
+	  list<Spot> spotsList2 = findSpot.GetAllSpots();
+	  for(list<Spot>::iterator it = spotsList2.begin(); it!= spotsList2.end(); ++it) {
+		    Spot spot = *it;
+		    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
+		  }
 /*
 		XMLDocument xmlDoc;
 		xmlDoc.Parse( xml );
