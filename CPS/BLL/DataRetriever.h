@@ -20,7 +20,7 @@ class DataRetriever {
 public:
 	DataRetriever(){};
 
-	list<Spot> Query(int x) {
+	list<Spot> GetSpotByID(int x) {
 		DataConnector temp;
 	    return temp.Query(x);
 	  }
@@ -30,8 +30,6 @@ public:
 		this->spotsList = temp.GetAllSpots();
 		return spotsList;
 	}
-
-
 
 private:
 	list<Spot> spotsList;

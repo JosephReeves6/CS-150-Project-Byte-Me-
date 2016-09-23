@@ -18,50 +18,26 @@
 using namespace std;
 
 int main() {
+
+//{testStart: Get a spot by ID.
 	DataRetriever findSpot;
 	Spot spot;
-	list<Spot> spotsList = findSpot.Query(5);
+	list<Spot> spotsList = findSpot.GetSpotByID(5);
 
 	  for(list<Spot>::iterator it = spotsList.begin(); it!= spotsList.end(); ++it) {
 	    Spot spot = *it;
 	    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
 	  }
-//test
+// testEnd: Get a spot by ID.}
+
+//{testStart: Get All spots.
 	  list<Spot> spotsList2 = findSpot.GetAllSpots();
 	  for(list<Spot>::iterator it = spotsList2.begin(); it!= spotsList2.end(); ++it) {
 		    Spot spot = *it;
 		    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
 		  }
-/*
-		XMLDocument xmlDoc;
-		xmlDoc.Parse( xml );
-		XMLError eResult = xmlDoc.LoadFile(path);
-		XMLCheckResult(eResult);
-		cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+// testEnd: Get All spots.}
 
 
-		XMLNode * pPark = xmlDoc.NewElement("P1");
-		//Manually
-
-		xmlDoc.InsertFirstChild(pPark);
-
-
-		//auto
-		for (int i= 1; i <= 20; i++) {
-					XMLElement * pElement = xmlDoc.NewElement("Spot");
-					pElement->SetAttribute("ID",i);
-					if(i%2 != 0)
-						pElement->SetAttribute("Status",0);
-					else
-						pElement->SetAttribute("Status",1);
-					pPark->InsertEndChild(pElement);
-		}
-		xmlDoc.InsertEndChild(pPark);
-		eResult = xmlDoc.SaveFile(path);
-
-
-		XMLCheckResult(eResult);
-		cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
-*/
 	return 0;
 }
