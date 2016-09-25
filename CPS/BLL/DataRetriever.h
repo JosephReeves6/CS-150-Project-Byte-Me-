@@ -4,6 +4,9 @@
  *  Created on: Sep 21, 2016
  *      Author: ByteMe Team
  */
+#ifndef DataRetriever_h
+#define DataRetriever_h
+
 #include <iostream>
 #include <vector>
 #include <iterator>
@@ -31,9 +34,15 @@ public:
 		return spotsList;
 	}
 
+	list<Spot> UpdateStatus(int spotId,int status){
+			DataConnector temp;
+			this->spotsList = temp.UpdateSpotStatus(spotId,status);
+			return spotsList;
+		}
+
 private:
 	list<Spot> spotsList;
 
 };
 
-
+#endif
