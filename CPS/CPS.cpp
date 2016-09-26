@@ -12,7 +12,6 @@
 #include <list>
 #include "BLL/DataRetriever.h"
 #include "BLL/Spot.h"
-#include "DAL/DataConnector.h"
 
 
 
