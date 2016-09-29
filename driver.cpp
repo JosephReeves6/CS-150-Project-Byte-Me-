@@ -31,14 +31,14 @@ int main(void)
     //record input into new dynamically allocated car object
     
  
-    while (true)
-    {
-    
-    //ask if they want to get a spot, leave, or display all open, or exit the program
-    //call a function from inputFunctions.cpp depending on which option they choose and take more input as needed
-    //or break from the loop
-     
-    } //end of inner while
+         while (true)
+         {
+
+         //ask if they want to get a spot, leave, or display all open, or exit the program
+         //call a function from inputFunctions.cpp depending on which option they choose and take more input as needed
+         //or break from the loop
+
+         } //end of inner while
      
     } //end of outer while
 
