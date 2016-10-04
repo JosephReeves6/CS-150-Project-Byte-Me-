@@ -42,7 +42,7 @@ int main() {
 
 
 
-	//{testStart: Update a spot by ID.
+//{testStart: Update a spot by ID.
 	DataConnector x;
 	list<Spot> spotsList3 = x.UpdateSpotStatus(3,5);
 

@@ -35,13 +35,15 @@ class DataConnector {
 public:
 	DataConnector(){};
 	virtual ~DataConnector(){};
-		void MakeConnection(XMLDocument &xmlDoc){
 
-		    XMLError eResult = xmlDoc.LoadFile(path);
-		    //xmlDoc.Parse(xml);
-		    XMLCheckResult(eResult);
-		    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
-		}
+	void MakeConnection(XMLDocument &xmlDoc){
+
+					    XMLError eResult = xmlDoc.LoadFile(path);
+					    //xmlDoc.Parse(xml);
+					    XMLCheckResult(eResult);
+					    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+					}
+
 		list<Spot> GetAllSpots(){
 			 XMLDocument xmlDoc;
 			 MakeConnection(xmlDoc);
@@ -154,6 +156,7 @@ public:
 	    xmlDoc.Clear();
 	    return spotsList;
 	  }
+
 
 
 
