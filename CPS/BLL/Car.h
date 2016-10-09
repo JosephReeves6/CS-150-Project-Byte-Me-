@@ -12,8 +12,8 @@ class Car
   //name is the driver's name
   //type refers to normal, handicap, privelaged, etc...
   //size is an int; 1 is compact, 2 is normal, 3 is oversized
-  string name, type;
-  int size;
+  string type;
+  int size, ID;
 
  public:
   //Constructor
@@ -23,7 +23,7 @@ class Car
 
   //set functions
   //setName() takes a string and assigns it to the name variable of the object
-  void setName(string name); 
+  void setID(int ID); 
 
   //setType() takes a string and assigns it to the type variable of the object
   void setType(string type);
@@ -33,7 +33,7 @@ class Car
 
   //get functions
   //getName() returns the name member variable
-  string getName();
+  int getID();
 
   //getType() returns the type member variable
   string getType();
