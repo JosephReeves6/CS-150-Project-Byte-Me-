@@ -20,7 +20,38 @@ static const char* path = "DAL/ParkingStrucute.xml";
 /*************************fucntion that gets a spot for the user ***********************************/
 int getSpot(Spot x, Car y)
 {
-  //function code
+  XMLDocument dataStruc;
+  MakeConnection(dataStruc);
+  
+  
+  XMLNode * pRoot = dataStruc.FirstChild();
+  XMLElement * pListElement = pRoot -> FristChildElement("Spot"); 
+  list<Spot> spotsList;
+  cont char * xmlID = 0;
+  const char * xmlStatus = 0;
+  
+   cout<<"*********************************************************"<<endl; 
+   cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
+   cout<<"*********************************************************"<<endl;
+  
+  while ( pListElement != 0 ){
+    
+    xmlID = pListElement -> Attribute("ID");
+    if( xmlID == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
+    int id = std::atoi (xmlID);
+    
+    xmlStatus = pListElement -> Attribute("Status");
+    if( xmlStatus == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
+    int status = std::atoi (xmlStatus);
+    
+    cout<<"ID: "<< id <<"\tStatus: "<< status <<endl; 
+    spotsList.push_back(p); 
+    
+    pListElement = pListElement -> NextSiblingElement("Spots"); 
+  }
+    return spotsList;
+}
+}// end of display all 
 }
 
 
@@ -31,13 +62,44 @@ int getSpot(Spot x, Car y)
 /***************************************** fucntion to leave a spot **********************************/
 bool leaveSpot(Spot x, int leftSpot)
 {
-  //function code
+  XMLDocument dataStruc;
+  MakeConnection(dataStruc);
+  
+  
+  XMLNode * pRoot = dataStruc.FirstChild();
+  XMLElement * pListElement = pRoot -> FristChildElement("Spot"); 
+  list<Spot> spotsList;
+  cont char * xmlID = 0;
+  const char * xmlStatus = 0;
+  
+   cout<<"*********************************************************"<<endl; 
+   cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
+   cout<<"*********************************************************"<<endl;
+  
+  while ( pListElement != 0 ){
+    
+    xmlID = pListElement -> Attribute("ID");
+    if( xmlID == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
+    int id = std::atoi (xmlID);
+    
+    xmlStatus = pListElement -> Attribute("Status");
+    if( xmlStatus == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
+    int status = std::atoi (xmlStatus);
+    
+    cout<<"ID: "<< id <<"\tStatus: "<< status <<endl; 
+    spotsList.push_back(p); 
+    
+    pListElement = pListElement -> NextSiblingElement("Spots"); 
+  }
+    return spotsList;
+}
+}// end of display all 
 }
 
 
 
 /****************prints out all of the currently available spots in the lot**************************/
-void displayAll(Spot x)
+void displayAll()
 {
   XMLDocument dataStruc;
   MakeConnection(dataStruc);
