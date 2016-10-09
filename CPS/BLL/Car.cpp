@@ -16,9 +16,9 @@ Car::Car(string name, string type, int size)
 
 
 //sets the name variable
-void Car::setName(string name)
+void Car::setID(int ID)
 {
-  this->name = name;
+  this->ID = ID;
 }
 
 
@@ -37,9 +37,9 @@ void Car::setSize(int size)
 
 
 //returns the name variable
-string Car::getName()
+int Car::getID()
 {
-  return name;
+  return ID;
 }
 
 
