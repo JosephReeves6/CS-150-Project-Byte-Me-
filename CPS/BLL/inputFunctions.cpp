@@ -31,9 +31,11 @@ int getSpot(Spot x, Car y)
   const char * xmlStatus = 0;
   
    cout<<"*********************************************************"<<endl; 
-   cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
+   cout<<"************************ GET SPOT  **********************"<<endl;
    cout<<"*********************************************************"<<endl;
   
+  int count = 0; // keeps track of the amount of taken parking spots  
+ 
   while ( pListElement != 0 ){
     
     xmlID = pListElement -> Attribute("ID");
@@ -43,16 +45,26 @@ int getSpot(Spot x, Car y)
     xmlStatus = pListElement -> Attribute("Status");
     if( xmlStatus == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
     int status = std::atoi (xmlStatus);
+   
+    if( status == 1) count ++; 
+   
+    if( count == 21 ) 
+    cout<<"\tThere are no parking spots available at the moment. Please wait for the next available spot."<<endl. 
     
-    cout<<"ID: "<< id <<"\tStatus: "<< status <<endl; 
-    spotsList.push_back(p); 
+    if( x == id ){
+      Spot p;
+     p.SetID(id);
+     pListElement -> Attribute("Status");
+     pListElement ->SetAttribute("Status",1);// set status to 1 meaning spot is taken
+     spotsList.push_back(p); 
+     break;
+    }
     
     pListElement = pListElement -> NextSiblingElement("Spots"); 
-  }
+  } // end of while 
     return spotsList;
-}
-}// end of display all 
-}
+} // end of getspot 
+
 
 
 
@@ -86,15 +98,27 @@ bool leaveSpot(Spot x, int leftSpot)
     if( xmlStatus == 0 ) cout << XML_ERROR_PASSING_ATTRIBUTE;
     int status = std::atoi (xmlStatus);
     
-    cout<<"ID: "<< id <<"\tStatus: "<< status <<endl; 
-    spotsList.push_back(p); 
+    if ( x == id ){
+     pListElement -> Attribute("Status");
+     pListElement ->SetAttribute("Status",0);// set status to 0 meaning spot is open
+     pRoot -> InsetAfterChild(pListElement,pListElement -> NextSiblingElement("Spot"));
+     break;
+    }// end if
     
     pListElement = pListElement -> NextSiblingElement("Spots"); 
-  }
+  }// end while 
+    
+    xmlDoc.InsertEndChild(pRoot); // ?
+    xmlDoc.SaveFile(path);
+    spotsList = GetAllSpots();
+ 
+    xmlDoc.DeleteNode(pRoot);  // ?
+    xmlDoc.DeleteChildren();
+    xmlDoc.Clear()
+     
     return spotsList;
-}
-}// end of display all 
-}
+}// end leave spot 
+
 
 
 
@@ -129,7 +153,9 @@ void displayAll()
     spotsList.push_back(p); 
     
     pListElement = pListElement -> NextSiblingElement("Spots"); 
-  }
+  } // end of while 
     return spotsList;
-}
-}// end of display all 
+}// end of display all function 
+
+
+
