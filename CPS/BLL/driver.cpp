@@ -9,8 +9,13 @@
 // returning user,the program will ask for the user's ID*/
 //
 
+#include <iostream>
+#include <istream>
+#include <Car.h>
 
 using namespace std;
+
+void newuser();
 
 int main(void){
  bool running = true;
@@ -46,4 +51,31 @@ int main(void){
 	} while (running); //Keeps running until User select exit
 
 	return 0;
+}
+
+void newuser()
+{
+	Car Car; 
+	
+	string ID,type;
+	int size;
+
+	cout << "Please enter driver's ID: ";
+	getline(cin, ID);
+	cout << endl;
+
+	cout << "Please enter type of car: ";
+	getline(cin, type);
+	cout << endl;
+
+	cout << "Please enter size compact(0) or normal(1) or oversized(2): ";
+	cin >> size;
+	cout << endl;
+
+	//call function
+	Car.setID(ID);
+	Car.setType(type);
+	Car.setSize(size);
+	
+	return (0);
 }
