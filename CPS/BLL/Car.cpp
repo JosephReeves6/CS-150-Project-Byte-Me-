@@ -7,9 +7,9 @@
 
 //constructor 
 //sets values of private member variables
-Car::Car(string name, string type, int size)
+Car::Car(int ID, string type, int size)
 {
-  this->name = name;
+  this->ID = ID;
   this->type = type;
   this->size = size;
 }
