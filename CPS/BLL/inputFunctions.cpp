@@ -51,8 +51,8 @@ int getSpot(Spot x, Car y)
     if( count == 21 ) 
     cout<<"\tThere are no parking spots available at the moment. Please wait for the next available spot."<<endl. 
     
-    if( x == id ){
-      Spot p;
+    if( x == id && status != 1){
+     Spot p;
      p.SetID(id);
      pListElement -> Attribute("Status");
      pListElement ->SetAttribute("Status",1);// set status to 1 meaning spot is taken
