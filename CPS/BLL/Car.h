@@ -18,7 +18,7 @@ class Car
  public:
   //Constructor
   //sets type to normal and size to 2 which is normal, if there is no input
-  Car(string name = NULL, string type = "normal", int size = 2);
+  Car(int ID = 0, string type = "normal", int size = 2);
   ~Car();  //Deconstructor
 
   //set functions
