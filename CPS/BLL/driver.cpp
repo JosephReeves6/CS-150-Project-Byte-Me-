@@ -159,8 +159,8 @@ void userInput(Car car)
 	{
 		case 1:
 		{
-			Spot spot = getSpot();
-			cout << your spot is << spot.getid();
+			int s = getSpot();
+			cout << your spot is << s;
 		}
 			break;
 			
