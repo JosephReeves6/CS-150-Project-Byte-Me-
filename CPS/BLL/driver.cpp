@@ -159,7 +159,7 @@ void userInput(Car car)
 	{
 		case 1:
 		{
-			int s = getSpot();
+			int s = getSpot(car);
 			cout << your spot is << s;
 		}
 			break;
