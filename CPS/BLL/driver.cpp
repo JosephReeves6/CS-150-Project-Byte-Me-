@@ -27,7 +27,7 @@ int main(void){
 	Car tempCar;
 	
 	list<Car> carList = getAllCars();/*****a function that returns the list of cars from XML File****/
-	bool IDs[1000] = {0}; //array of IDs for security purposes
+	bool IDs[] = {0}; //array of IDs for security purposes
 	
 	//set IDs from carList to true
 	for (Car i : carList)
