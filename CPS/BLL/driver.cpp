@@ -12,21 +12,34 @@
 #include <iostream>
 #include <istream>
 #include <Car.h>
+#inclide <list>
 
 using namespace std;
 
-void newuser();
+Car newuser(int ID);
 
 int main(void){
  bool running = true;
-	int choice;
-
+	int choice, tempID;
+	int j = 0;
+	Car tempCar;
+	
+	list<Car> carList = getAllCars();/*****a function that returns the list of cars from XML File****/
+	bool IDs[1000] = {0}; //array of IDs for security purposes
+	
+	//set IDs from carList to true
+	for (Car i : carList)
+	{
+		IDs[i.getID()] = True;
+	}
+	
+	
 	//Main Menu for program
 	do {
 		cout << "Welcome!" << endl;
 		cout << "Please select the following:\n" << endl;
-		cout << "1 - New User" << endl;
-		cout << "2 - Returning User" << endl;
+		cout << "1 - Returning User" << endl;
+		cout << "2 - New User" << endl;
 		cout << "3 - Exit\n" << endl;
 
 		cin >> choice;
@@ -35,11 +48,54 @@ int main(void){
 		switch (choice)
 		{
 		case 1:
+		{
 			cout << endl << "Login:\n" << endl;
 			cout << "User ID" << endl;
+			cin >> tempID;
+			
+			//check if ID is in the system
+			if (tempID > 999 || IDs[tempID] != True)
+			{
+				cout << "Error: Invalid User ID" << endl;
+			}
+			else
+			{
+				cout << "Valid user ID. Retrieving Information" << endl;
+				
+				for (Car i : carList)
+				{
+					if (i.getID() == tempID)
+					{
+						tempCar = i;
+						break;
+					}
+				}
+				
+				//verify information
+				cout << "size: " << tempCar.getSize() << " type: " << tempCar.getType() << endl;
+				
+			}
+		}
 			break;
 		case 2:
+		{
 			cout << endl << "Sign up:\n" << endl;
+			
+			//get a new ID to send to the user that is not already active
+			while (IDs[j] == True)
+				j++;
+			
+			//create a new car for the user
+			tempCar = newuser(j);
+			
+			//add new car to the list 
+			carList.push_back(tempCar);
+			
+			//add ID to the IDs array
+			IDs[j] == True;
+			
+			
+		}
 			break;
 		case 3:
 			running = false; //Exits app if selected
@@ -53,15 +109,14 @@ int main(void){
 	return 0;
 }
 
-void newuser()
+Car newuser(int ID)
 {
-	Car Car; 
+	Car car; 
 	
-	string ID,type;
+	string type;
 	int size;
 
-	cout << "Please enter driver's ID: ";
-	getline(cin, ID);
+	cout << "Your driver ID is: " << ID;
 	cout << endl;
 
 	cout << "Please enter type of car: ";
@@ -73,9 +128,9 @@ void newuser()
 	cout << endl;
 
 	//call function
-	Car.setID(ID);
-	Car.setType(type);
-	Car.setSize(size);
+	car.setID(ID);
+	car.setType(type);
+	car.setSize(size);
 	
-	return (0);
+	return car;
 }
