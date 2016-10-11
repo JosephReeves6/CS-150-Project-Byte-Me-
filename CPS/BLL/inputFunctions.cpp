@@ -18,7 +18,7 @@ static const char* path = "DAL/ParkingStrucute.xml";
 
 /*returns the next available spot or 0 if there are no spots available */
 /*************************fucntion that gets a spot for the user ***********************************/
-int getSpot(int x, Car y)
+int getSpot(int x) // x is the spot the user wants 
 {
   XMLDocument dataStruc;
   MakeConnection(dataStruc);
