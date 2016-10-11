@@ -18,6 +18,8 @@ using namespace std;
 
 Car newuser(int ID);
 
+void userInput(Car car);
+
 int main(void){
  bool running = true;
 	int choice, tempID;
@@ -74,6 +76,9 @@ int main(void){
 				//verify information
 				cout << "size: " << tempCar.getSize() << " type: " << tempCar.getType() << endl;
 				
+				//allow user to access the program functions
+				userInput(tempCar);
+				
 			}
 		}
 			break;
@@ -93,6 +98,9 @@ int main(void){
 			
 			//add ID to the IDs array
 			IDs[j] == True;
+			
+			//allow user to access the program functions
+			userInput(tempCar);
 			
 			
 		}
@@ -134,3 +142,59 @@ Car newuser(int ID)
 	
 	return car;
 }
+
+void userInput(Car car)
+{
+	int choice;
+	
+	cout << "Please select the following:\n" << endl;
+	cout << "1 - Get Spot" << endl;
+	cout << "2 - Leave Spot" << endl;
+	cout << "3 - Print all Spots" << endl;
+	cout << "4 - Leave the program" << endl;
+	
+	cin >> choice
+		
+	switch(choice)
+	{
+		case 1:
+		{
+			Spot spot = getSpot();
+			cout << your spot is << spot.getid();
+		}
+			break;
+			
+		case 2:
+		{
+			int x;
+			cout << "Enter the spot you are leaving:" << endl;
+			cin >> x;
+			leaveSpot(x);
+		}
+			break;
+			
+		case 3:
+		{
+			printAllSpots();
+			userInput(car);
+		}
+			break;
+			
+		case 4:
+			cout << "Leaving program" << endl;
+			break;
+	
+		default:
+		{
+			cout << "Error: invalid input << endl;
+			userInput(car);
+		}
+			break;
+	}
+	
+	return;
+	
+}
+	
+		
+	
