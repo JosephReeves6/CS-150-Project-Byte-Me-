@@ -11,8 +11,9 @@
 #include <iterator>
 #include <list>
 #include "BLL/DataRetriever.h"
+#include "DAL/DataConnector.h"
 #include "BLL/Spot.h"
-
+#include "BLL/Car.h"
 
 
 using namespace std;
@@ -41,7 +42,7 @@ int main() {
 */
 
 
-
+/*
 //{testStart: Update a spot by ID.
 	DataConnector x;
 	list<Spot> spotsList3 = x.UpdateSpotStatus(3,5);
@@ -50,6 +51,21 @@ int main() {
 			    Spot spot = *it;
 			    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
 			  }
+			  */
+
+	//Get All Cars Info
+	DataConnector x;
+	  list<Car> carsList1 = x.GetAllCarsInfo();
+
+	  for(list<Car>::iterator it = carsList1.begin(); it!= carsList1.end(); ++it) {
+		    Car car = *it;
+		    cout << "Car ID: " << car.getID()
+		    	 <<" SIZE: " <<car.getSize()
+		         <<" TYPE: " << car.getType()
+		         <<" PASS: " << car.getPass()
+				 << endl;
+		  }
+
 	return 0;
 }
 // testEnd: Update a spot by ID.}

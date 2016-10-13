@@ -12,11 +12,13 @@
 #include <iterator>
 #include <list>
 #include "tinyxml2.h"
-#include "..\BLL\Spot.h"
+#include "../BLL\Spot.h"
+#include "../BLL\Car.h"
 
 using namespace std;
 using namespace tinyxml2;
-static const char* path ="DAL/Data/ParkingStructure.xml";
+static const char* pathPS ="CPS/DAL/Data/ParkingStructure.xml";
+static const char* pathCDI ="CPS/DAL/Data/CarAndDriversInfo.xml";
 
 
 #ifndef XMLCheckResult
@@ -36,17 +38,24 @@ public:
 	DataConnector(){};
 	virtual ~DataConnector(){};
 
-	void MakeConnection(XMLDocument &xmlDoc){
+	void MakeConnectionPS(XMLDocument &xmlDoc){
 
-					    XMLError eResult = xmlDoc.LoadFile(path);
+					    XMLError eResult = xmlDoc.LoadFile(pathPS);
 					    //xmlDoc.Parse(xml);
 					    XMLCheckResult(eResult);
 					    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
 					}
+	void MakeConnectionCDI(XMLDocument &xmlDoc){
 
-		list<Spot> GetAllSpots(){
+						    XMLError eResult = xmlDoc.LoadFile(pathCDI);
+						    //xmlDoc.Parse(xml);
+						    XMLCheckResult(eResult);
+						    cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+						}
+
+	list<Spot> GetAllSpots(){
 			 XMLDocument xmlDoc;
-			 MakeConnection(xmlDoc);
+			 MakeConnectionPS(xmlDoc);
 
 			    XMLNode * pRoot = xmlDoc.FirstChild();
 			    XMLElement * pListElement = pRoot->FirstChildElement("Spot");
@@ -74,11 +83,59 @@ public:
 			    return spotsList;
 		}
 
+		list<Car> GetAllCarsInfo(){
+			 XMLDocument xmlDoc;
+			 MakeConnectionCDI(xmlDoc);
+
+			    XMLNode * pRoot = xmlDoc.FirstChild();
+			    XMLElement * pListElement = pRoot->FirstChildElement("Driver");
+			    list<Car> carsList;
+
+			    // <Driver ID="3" Type="normal" Size="0" Pass="abc"/>
+			    const char * szAttributeTextID = 0;
+			    const char * szAttributeTextSize = 0;
+			    const char * szAttributeTextType = 0;
+			    const char * szAttributeTextPass = 0;
+
+
+			    while (pListElement != 0) {
+
+			      szAttributeTextID = pListElement->Attribute("ID");
+			      if (szAttributeTextID == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      int id = std::atoi (szAttributeTextID);
+
+			      szAttributeTextType = pListElement->Attribute("Type");
+			      if (szAttributeTextType == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      string type = (szAttributeTextType);
+
+			      szAttributeTextSize = pListElement->Attribute("Size");
+			      if (szAttributeTextSize == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      int size = std::atoi (szAttributeTextSize);
+
+			      szAttributeTextPass = pListElement->Attribute("Pass");
+			      if (szAttributeTextPass == 0) cout << XML_ERROR_PARSING_ATTRIBUTE;
+			      string pass = (szAttributeTextPass);
+
+			        Car p;
+
+			        p.setID(id);
+			        p.setType((string)type);
+			        p.setSize(size);
+			        p.setPass(pass);
+
+			        carsList.push_back(p);
+
+			      pListElement = pListElement->NextSiblingElement("Driver");
+			    }
+
+			    return carsList;
+		}
+
 		list<Spot> Query(int x) {
 		    list<Spot> spotsList;
 
 		    XMLDocument xmlDoc;
-		    MakeConnection(xmlDoc);
+		    MakeConnectionPS(xmlDoc);
 
 		    XMLNode * pRoot = xmlDoc.FirstChild();
 
@@ -107,7 +164,9 @@ public:
 
 		      pListElement = pListElement->NextSiblingElement("Spot");
 		    }
-
+		        xmlDoc.DeleteNode(pRoot);
+		   	    xmlDoc.DeleteChildren();
+		   	    xmlDoc.Clear();
 		    return spotsList;
 		  }
 
@@ -115,7 +174,7 @@ public:
 	    list<Spot> spotsList;
 
 	    XMLDocument xmlDoc;
-	    MakeConnection(xmlDoc);
+	    MakeConnectionPS(xmlDoc);
 
 	    XMLNode * pRoot = xmlDoc.FirstChild();
 
@@ -147,7 +206,7 @@ public:
 	      pListElement = pListElement->NextSiblingElement("Spot");
 	    }
 	    xmlDoc.InsertEndChild(pRoot);
-	    xmlDoc.SaveFile(path);
+	    xmlDoc.SaveFile(pathPS);
 	    spotsList = GetAllSpots();
 
 

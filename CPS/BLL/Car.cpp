@@ -7,14 +7,17 @@
 
 //constructor 
 //sets values of private member variables
-Car::Car(int ID, string type, int size)
+Car::Car(int ID, string type, int size,string pass)
 {
   this->ID = ID;
   this->type = type;
   this->size = size;
+  this->pass = pass;
 }
 
+Car::~Car(){
 
+}
 //sets the name variable
 void Car::setID(int ID)
 {
@@ -28,7 +31,10 @@ void Car::setType(string type)
   this->type = type;
 }
 
-
+void Car::setPass(string pass)
+{
+  this->pass = pass;
+}
 //sets the size variable
 void Car::setSize(int size)
 {
@@ -49,7 +55,10 @@ string Car::getType()
   return type;
 }
 
-
+string Car::getPass()
+{
+  return pass;
+}
 //returns the size variable
 int Car::getSize()
 {
