@@ -22,7 +22,7 @@ static const char* pathCDI ="CPS/DAL/Data/CarAndDriversInfo.xml";
 
 
 #ifndef XMLCheckResult
-#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); /*return a_eResult;*/ }
+#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("DB connection Error: %i\n", a_eResult); /*return a_eResult;*/ }
 #endif
 /*
 static const char* xml =
@@ -129,6 +129,31 @@ public:
 			    }
 
 			    return carsList;
+		}
+
+		bool AddNewCar(Car car){
+			 XMLDocument xmlDoc;
+			MakeConnectionCDI(xmlDoc);
+			XMLNode * pRoot = xmlDoc.FirstChild();
+			 XMLElement * pListElement = xmlDoc.NewElement("Driver");
+		    list<Car> carsList;
+		    // <Driver ID="3" Type="normal" Size="0" Pass="abc"/>
+
+		    pListElement->SetAttribute("ID",car.getID());
+		    pListElement->SetAttribute("Type",car.getType().c_str());
+		    pListElement->SetAttribute("Size",car.getSize());
+		    pListElement->SetAttribute("Pass",car.getPass().c_str());
+
+		    pRoot->InsertEndChild(pListElement);
+
+		    XMLError eResult = xmlDoc.SaveFile(pathCDI);
+			XMLCheckResult(eResult);
+			cout << "ErrorID  : " << xmlDoc.ErrorID() <<endl<<"ErrorName: " <<xmlDoc.ErrorName()<<endl;
+
+			if (xmlDoc.ErrorID()!=0)
+				return false;
+			else true;
+
 		}
 
 		list<Spot> Query(int x) {

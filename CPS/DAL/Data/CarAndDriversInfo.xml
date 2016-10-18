@@ -1,5 +1,8 @@
 <C1>
-    <Driver ID="1" Type="normal" Size="0" Pass="abc"/>
-    <Driver ID="2" Type="normal" Size="0" Pass="abc"/>
-    <Driver ID="3" Type="normal" Size="0" Pass="abc"/>
+    <Driver ID="1" Type="normal" Size="0" Pass="abcd1"/>
+    <Driver ID="2" Type="normal" Size="0" Pass="abc1"/>
+    <Driver ID="3" Type="normal" Size="0" Pass="abcdf"/>
+    <Driver ID="4" Type="normal" Size="1" Pass="bbbccc"/>
+    <Driver ID="5" Type="normal" Size="1" Pass="bbbccc"/>
+    <Driver ID="6" Type="normal" Size="1" Pass="bbbccc"/>
 </C1>

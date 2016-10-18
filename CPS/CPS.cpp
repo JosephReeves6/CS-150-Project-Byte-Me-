@@ -11,7 +11,6 @@
 #include <iterator>
 #include <list>
 #include "BLL/DataRetriever.h"
-#include "DAL/DataConnector.h"
 #include "BLL/Spot.h"
 #include "BLL/Car.h"
 
@@ -53,8 +52,10 @@ int main() {
 			  }
 			  */
 
-	//Get All Cars Info
-	DataConnector x;
+
+/*
+//Get All Cars Info
+	DataRetriever x;
 	  list<Car> carsList1 = x.GetAllCarsInfo();
 
 	  for(list<Car>::iterator it = carsList1.begin(); it!= carsList1.end(); ++it) {
@@ -65,7 +66,19 @@ int main() {
 		         <<" PASS: " << car.getPass()
 				 << endl;
 		  }
+// testEnd: Update a spot by ID.}
+ *
+ */
+    //<Driver ID="3" Type="normal" Size="0" Pass="abc"/>
+
+	DataRetriever x;
+	Car car;
+	car.setID(6);
+	car.setType("normal");
+	car.setSize(1);
+	car.setPass("bbbccc");
+	x.AddNewCar(car);
 
 	return 0;
 }
-// testEnd: Update a spot by ID.}
+
