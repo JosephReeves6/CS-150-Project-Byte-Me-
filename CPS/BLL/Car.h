@@ -6,6 +6,8 @@
 #ifndef CAR_H
 #define CAR_H
 #include <string>
+#include <cstring>
+
 using namespace std;
 
 class Car
@@ -16,6 +18,8 @@ class Car
   //size is an int; 1 is compact, 2 is normal, 3 is oversized
   string type,pass;
   int size, ID;
+  void Encrypt(string &strTarget);
+  void EncryptDec(string &toEncrypt);
 
  public:
   //Constructor

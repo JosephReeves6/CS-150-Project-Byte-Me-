@@ -73,10 +73,10 @@ int main() {
 
 	DataRetriever x;
 	Car car;
-	car.setID(6);
+	car.setID(11);
 	car.setType("normal");
 	car.setSize(1);
-	car.setPass("bbbccc");
+	car.setPass("123456abcs");
 	x.AddNewCar(car);
 
 	return 0;
