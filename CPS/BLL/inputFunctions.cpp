@@ -16,6 +16,7 @@ void displayAll()
 {
 	  DataRetriever dataB;
 	  list<Spot> spotsList_1 = dataB.GetAllSpots();
+	int data[21] = {0};
  
       cout<<"*********************************************************"<<endl; 
       cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
@@ -23,9 +24,10 @@ void displayAll()
  
 	  for(list<Spot>::iterator it = spotsList_1.begin(); it!= spotsList_1.end(); ++it) {
 		    Spot spot = *it;
-		    cout << "ID: " << spot.GetId() << "\tSTATUS: " << spot.GetStatus() << endl; 
+		    data[spot.GetId()] =  spot.GetStatus(); 
 	  } // end of for loop
 
+	//display 
 	 
 } // end of getspot 
 
