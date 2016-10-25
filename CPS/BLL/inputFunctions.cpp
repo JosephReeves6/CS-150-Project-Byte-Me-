@@ -5,15 +5,17 @@
  #include <vector>
  #include <iterator>
  #include <list>
- #include "BLL/DataRetriever.h"
- #include "BLL/Spot.h"
+ #include "DataRetriever.h"
+ #include "Spot.h"
 
 using namespace std;
 
 
 /****************prints out all of the currently available spots in the lot**************************/
+void displayAll()
 {
-	  list<Spot> spotsList_1 = findSpot.GetAllSpots();
+	  DataRetriever dataB;
+	  list<Spot> spotsList_1 = dataB.GetAllSpots();
  
       cout<<"*********************************************************"<<endl; 
       cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
@@ -22,25 +24,26 @@ using namespace std;
 	  for(list<Spot>::iterator it = spotsList_1.begin(); it!= spotsList_1.end(); ++it) {
 		    Spot spot = *it;
 		    cout << "ID: " << spot.GetId() << "\tSTATUS: " << spot.GetStatus() << endl; 
+	  } // end of for loop
 
+	 
 } // end of getspot 
 
 
 /*input is an integer to represent the spot that is being left returns 
 1 to confirm that the person is leaving a valid spot returns 0 if it was not a valid spot*/
 /***************************************** fucntion to leave a spot **********************************/
-bool leaveSpot(int x)
+bool leaveSpot(int x) // int x is the id of the person leaving  
 {
    
-	DataConnector x;
-	list<Spot> spotsList3 = x.UpdateSpotStatus(3,5);
+	DataRetriever dataB;
+	list<Spot> spotsList_2 = dataB.UpdateStatus(x,0); // x = id and 0 equals status which means spot is  now  open  ////// changed
 
-	for(list<Spot>::iterator it = spotsList3.begin(); it!= spotsList3.end(); ++it) {
+	for(list<Spot>::iterator it = spotsList_2.begin(); it!= spotsList_2.end(); ++it) {
 			    Spot spot = *it;
 			    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
 			  }
 return 0;
-
 }// end leave spot 
 
 
@@ -61,6 +64,7 @@ int getSpot(Car x)
 	  }
 	return -1;
  
-}
+}// end of display all function 
+
 
 
