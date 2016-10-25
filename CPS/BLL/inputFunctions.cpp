@@ -46,18 +46,21 @@ return 0;
 
 /*returns the next available spot or 0 if there are no spots available */
 /*************************fucntion that gets a spot for the user ***********************************/ 
-void getSpot(
+int getSpot(Car x)
 {
 
- DataRetriever findSpot;
-	Spot spot;
-	list<Spot> spotsList = findSpot.GetSpotByID(5);
-	  for(list<Spot>::iterator it = spotsList.begin(); it!= spotsList.end(); ++it) {
+ 	DataRetriever findSpot;
+	list<Spot> spotsList_3 = findSpot.GetAllSpots(); //// changed
+	  for(list<Spot>::iterator it = spotsList_3.begin(); it!= spotsList_3.end(); ++it) {
 	    Spot spot = *it;
-	    cout << "ID: " << spot.GetId() << " STATUS: " << spot.GetStatus() << endl;
+	    if (spot.GetStatus() == 0) ///// changed
+        {
+            findSpot.UpdateStatus(spot.GetId(), 1);
+		    return spot.GetId(); /////// changed
+        }
 	  }
+	return -1;
  
-}// end of display all function 
-
+}
 
 
