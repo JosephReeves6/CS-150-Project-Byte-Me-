@@ -167,10 +167,7 @@ void userInput(Car car)
     {
         case 1:
         {
-            cout << "Enter the spot you would like" << endl;
-            int y;
-            cin >> y;
-            int s = getSpot(y); //////////????????
+            int s = getSpot(car); //////////????????
             cout <<"your spot is "<< s;  //////////// changed
         }
             break;
