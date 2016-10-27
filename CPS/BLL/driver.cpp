@@ -35,7 +35,7 @@ int main(void){
     string IDs[100]; //array of IDs for security purposes
     
     for (int i = 0; i < 100; ++i) {
-        IDs[i] = "";
+        IDs[i] = "/0";
     }
     
     //set IDs from carList to true
@@ -65,7 +65,7 @@ int main(void){
                 cin >> tempID;
                 
                 //check if ID is in the system
-                if (tempID > 999 || IDs[tempID] == "") //// changed to true
+                if (tempID > 999 || IDs[tempID] == "/0") //// changed to true
                 {
                     cout << "Error: Invalid User ID" << endl;
                 }
@@ -107,7 +107,7 @@ int main(void){
                 cout << endl << "Sign up:\n" << endl;
                 
                 //get a new ID to send to the user that is not already active
-                while (IDs[j] != "") /// changed to true
+                while (IDs[j] != "/0") /// changed to true
                     j++;
                 
                 //create a new car for the user
