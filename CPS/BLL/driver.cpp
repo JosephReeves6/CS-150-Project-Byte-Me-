@@ -85,7 +85,10 @@ int main(void){
                     cout << "Input Password:" << endl;
                     cin >> pass;
                     
-                    if (pass != tempCar.getPass())
+                    Car tempPass;
+                    tempPass.setPass(pass);
+                    
+                    if (tempPass.getPass() != tempCar.getPass())
                     {
                         cout << "Incorrect password" << endl;
                         break;
