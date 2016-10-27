@@ -120,7 +120,7 @@ int main(void){
                 Data.AddNewCar(tempCar); /////// ?????????????
                 
                 //add ID to the IDs array
-                IDs[j] = true; /// changed to true
+                IDs[j] = tempCar.getPass(); /// changed to true
                 
                 //allow user to access the program functions
                 userInput(tempCar);
