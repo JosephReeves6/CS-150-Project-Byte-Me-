@@ -32,12 +32,16 @@ int main(void){
     DataRetriever Data; //// changed
     
     list<Car> carList = Data.GetAllCarsInfo();/*****a function that returns the list of cars from XML File****/   /// get all spots ????
-    bool IDs[100] = {0}; //array of IDs for security purposes
+    string IDs[100] = {0}; //array of IDs for security purposes
+    
+    for (int i = 0; i < 100; ++i) {
+        IDs[i] = "";
+    }
     
     //set IDs from carList to true
     for (list<Car>::iterator i = carList.begin(); i != carList.end() ; ++i)
     {
-        IDs[i->getID()] = true;  /// changed
+        IDs[i->getID()] = i->getPass();  /// changed
     }
     
     
@@ -61,7 +65,7 @@ int main(void){
                 cin >> tempID;
                 
                 //check if ID is in the system
-                if (tempID > 999 || IDs[tempID] != true) //// changed to true
+                if (tempID > 999 || IDs[tempID] != "") //// changed to true
                 {
                     cout << "Error: Invalid User ID" << endl;
                 }
@@ -77,6 +81,17 @@ int main(void){
                             break;
                         }
                     }
+                    string pass;
+                    cout << "Input Password:" << endl;
+                    cin >> pass;
+                    
+                    if (pass != tempCar.getPass())
+                    {
+                        cout << "Incorrect password" << endl;
+                        break;
+                    }
+                    
+                    cout << "Password Verified" << endl;
                     
                     //verify information
                     cout << "size: " << tempCar.getSize() << " type: " << tempCar.getType() << endl;
@@ -92,7 +107,7 @@ int main(void){
                 cout << endl << "Sign up:\n" << endl;
                 
                 //get a new ID to send to the user that is not already active
-                while (IDs[j] == true) /// changed to true
+                while (IDs[j] != "") /// changed to true
                     j++;
                 
                 //create a new car for the user
@@ -129,7 +144,7 @@ Car newuser(int ID)
 {
     Car car;
     
-    string type;
+    string type, pass;
     int size;
     
     cout << "Your driver ID is: " << ID;
@@ -143,10 +158,15 @@ Car newuser(int ID)
     cin >> size;
     cout << endl;
     
+    cout << "Please enter a password with 7 characters: ";
+    cin >> pass;
+    cout << endl;
+    
     //call function
     car.setID(ID);
     car.setType(type);
     car.setSize(size);
+    car.setPass(pass);
     
     return car;
 }
@@ -168,7 +188,7 @@ void userInput(Car car)
         case 1:
         {
             int s = getSpot(car); //////////????????
-            cout <<"your spot is "<< s;  //////////// changed
+            cout <<"your spot is "<< s << endl;  //////////// changed
         }
             break;
             
@@ -204,4 +224,3 @@ void userInput(Car car)
     
 }
 
-	
