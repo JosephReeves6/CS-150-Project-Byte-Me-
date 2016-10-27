@@ -32,7 +32,7 @@ int main(void){
     DataRetriever Data; //// changed
     
     list<Car> carList = Data.GetAllCarsInfo();/*****a function that returns the list of cars from XML File****/   /// get all spots ????
-    string IDs[100] = {0}; //array of IDs for security purposes
+    string IDs[100]; //array of IDs for security purposes
     
     for (int i = 0; i < 100; ++i) {
         IDs[i] = "";
