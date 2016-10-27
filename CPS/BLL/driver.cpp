@@ -65,7 +65,7 @@ int main(void){
                 cin >> tempID;
                 
                 //check if ID is in the system
-                if (tempID > 999 || IDs[tempID] != "") //// changed to true
+                if (tempID > 999 || IDs[tempID] == "") //// changed to true
                 {
                     cout << "Error: Invalid User ID" << endl;
                 }
