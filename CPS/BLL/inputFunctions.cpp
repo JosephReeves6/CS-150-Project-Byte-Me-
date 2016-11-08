@@ -143,10 +143,12 @@ int getSpot(Car x)
           
      //************** spot open *******************************
 	    if (spot.GetStatus() == 0)
-        {
-            findSpot.UpdateStatus(spot.GetId(), 1); // added
-            return spot.GetId();  
-        } // end of if
+       		 {
+           		 findSpot.UpdateStatus(spot.GetId(), 1); // added
+           		 return spot.GetId();  
+        	} // end of if
+		
+	}// end of for loop
 
 
     //********************** spot closed ***************************
@@ -157,22 +159,19 @@ int getSpot(Car x)
             cout <<"Do you wish to wait for the spot to open ? (yes or no)"<<endl;
             cin >> wait ;
           
-        	if ( wait == "yes")
+            if ( wait == "yes")
           	{
            		myqueue.push (spot.GetId());  /////// id of the car 
-            	cout << " You were added to the waitlist. Please wait for your spot to open "<< endl;
+            		cout << " You were added to the waitlist. Please wait for your spot to open "<< endl;
           	}// end of if
+		 
+            else if( wait == "no")
+            		return 0 ;
           
-        	else if( wait == "no")
-            	return 0 ;
-          
-        	else
-            	cout <<" Input wasnt recognized. Please input a valid argument" << endl;
-          
-		} // end of if
+            else
+            		cout <<" Input wasnt recognized. Please input a valid argument" << endl;
+	} // end of if
         
-    }// end of for loop
-
 	return -1;
  
 }// end of display all function 
