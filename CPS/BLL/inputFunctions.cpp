@@ -18,6 +18,10 @@ void displayAll()
 {
 	  DataRetriever dataB;
 	  list<Spot> spotsList_1 = dataB.GetAllSpots();
+	
+	  char spotdisplay[20];
+	  int statusdisplay[21];
+	  int w = 0;
  
       cout<<"*********************************************************"<<endl; 
       cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
@@ -27,9 +31,80 @@ void displayAll()
 	  {
 		    Spot spot = *it;
 		    cout << "ID: " << spot.GetId() << "\tSTATUS: " << spot.GetStatus() << endl; 
+		  
+		    statusdisplay[w] = spot.GetStatus();
+		    w++;
 	  } // end of for loop
 
-	 
+	 	  int i = 0;
+
+	  while(i<=20)
+	  		{
+	  			if(statusdisplay[i] == 1)
+	  			{
+	  				spotdisplay[i] = '*';
+	  			}
+	  			else
+	  			{
+	  				spotdisplay[i] = ' ';
+	  			}
+
+	  			i++;
+	  		}
+
+	  		char grid[41][27] = {{'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'},
+	  				             {'|','|',spotdisplay[0],spotdisplay[0],spotdisplay[0],'|','|',spotdisplay[1],spotdisplay[1],spotdisplay[1],'|','|',spotdisplay[2],spotdisplay[2],spotdisplay[2],'|','|','_','_','_','|','|'},
+	  		                     {'|','|',spotdisplay[0],spotdisplay[0],spotdisplay[0],'|','|',spotdisplay[1],spotdisplay[1],spotdisplay[1],'|','|',spotdisplay[2],spotdisplay[2],spotdisplay[2],'|','|',spotdisplay[3],spotdisplay[3],spotdisplay[3],'|','|'},
+	  		                     {'|','|',spotdisplay[0],spotdisplay[0],spotdisplay[0],'|','|',spotdisplay[1],spotdisplay[1],spotdisplay[1],'|','|',spotdisplay[2],spotdisplay[2],spotdisplay[2],'|','|',spotdisplay[3],spotdisplay[3],spotdisplay[3],'|','|'},
+	  		                     {'|','|',spotdisplay[0],spotdisplay[0],spotdisplay[0],'|','|',spotdisplay[1],spotdisplay[1],spotdisplay[1],'|','|',spotdisplay[2],spotdisplay[2],spotdisplay[2],'|','|',spotdisplay[3],spotdisplay[3],spotdisplay[3],'|','|'},
+	  							 {' ',' ',' ','1',' ',' ',' ',' ','2',' ',' ',' ',' ','3',' ',' ',' ',' ','4'},
+	  							 {' '},
+	  							 {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'},
+	  							 {'|','|',spotdisplay[4],spotdisplay[4],spotdisplay[4],'|','|',spotdisplay[5],spotdisplay[5],spotdisplay[5],'|','|',spotdisplay[6],spotdisplay[6],spotdisplay[6],'|','|','_','_','_','|','|'},
+	  							 {'|','|',spotdisplay[4],spotdisplay[4],spotdisplay[4],'|','|',spotdisplay[5],spotdisplay[5],spotdisplay[5],'|','|',spotdisplay[6],spotdisplay[6],spotdisplay[6],'|','|',spotdisplay[7],spotdisplay[7],spotdisplay[7],'|','|'},
+	  							 {'|','|',spotdisplay[4],spotdisplay[4],spotdisplay[4],'|','|',spotdisplay[5],spotdisplay[5],spotdisplay[5],'|','|',spotdisplay[6],spotdisplay[6],spotdisplay[6],'|','|',spotdisplay[7],spotdisplay[7],spotdisplay[7],'|','|'},
+	  							 {'|','|',spotdisplay[4],spotdisplay[4],spotdisplay[4],'|','|',spotdisplay[5],spotdisplay[5],spotdisplay[5],'|','|',spotdisplay[6],spotdisplay[6],spotdisplay[6],'|','|',spotdisplay[7],spotdisplay[7],spotdisplay[7],'|','|'},
+	  							 {' ',' ',' ','5',' ',' ',' ',' ','6',' ',' ',' ',' ','7',' ',' ',' ',' ','8'},
+	  							 {' '},
+	  							 {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'},
+	  							 {'|','|',spotdisplay[8],spotdisplay[8],spotdisplay[8],'|','|',spotdisplay[9],spotdisplay[9],spotdisplay[9],'|','|',spotdisplay[10],spotdisplay[10],spotdisplay[10],'|','|','_','_','_','|','|'},
+	  							 {'|','|',spotdisplay[8],spotdisplay[8],spotdisplay[8],'|','|',spotdisplay[9],spotdisplay[9],spotdisplay[9],'|','|',spotdisplay[10],spotdisplay[10],spotdisplay[10],'|','|',spotdisplay[11],spotdisplay[11],spotdisplay[11],'|','|'},
+	  							 {'|','|',spotdisplay[8],spotdisplay[8],spotdisplay[8],'|','|',spotdisplay[9],spotdisplay[9],spotdisplay[9],'|','|',spotdisplay[10],spotdisplay[10],spotdisplay[10],'|','|',spotdisplay[11],spotdisplay[11],spotdisplay[11],'|','|'},
+	  							 {'|','|',spotdisplay[8],spotdisplay[8],spotdisplay[8],'|','|',spotdisplay[9],spotdisplay[9],spotdisplay[9],'|','|',spotdisplay[10],spotdisplay[10],spotdisplay[10],'|','|',spotdisplay[11],spotdisplay[11],spotdisplay[11],'|','|'},
+	  							 {' ',' ',' ','9',' ',' ',' ',' ','1','0',' ',' ',' ','1','1',' ',' ',' ','1', '2'},
+	  							 {' '},
+	  							 {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'},
+	  							 {'|','|',spotdisplay[12],spotdisplay[12],spotdisplay[12],'|','|',spotdisplay[13],spotdisplay[13],spotdisplay[13],'|','|',spotdisplay[14],spotdisplay[14],spotdisplay[14],'|','|','_','_','_','|','|'},
+	  							 {'|','|',spotdisplay[12],spotdisplay[12],spotdisplay[12],'|','|',spotdisplay[13],spotdisplay[13],spotdisplay[13],'|','|',spotdisplay[14],spotdisplay[14],spotdisplay[14],'|','|',spotdisplay[15],spotdisplay[15],spotdisplay[15],'|','|'},
+	  							 {'|','|',spotdisplay[12],spotdisplay[12],spotdisplay[12],'|','|',spotdisplay[13],spotdisplay[13],spotdisplay[13],'|','|',spotdisplay[14],spotdisplay[14],spotdisplay[14],'|','|',spotdisplay[15],spotdisplay[15],spotdisplay[15],'|','|'},
+	  							 {'|','|',spotdisplay[12],spotdisplay[12],spotdisplay[12],'|','|',spotdisplay[13],spotdisplay[13],spotdisplay[13],'|','|',spotdisplay[14],spotdisplay[14],spotdisplay[14],'|','|',spotdisplay[15],spotdisplay[15],spotdisplay[15],'|','|'},
+	  							 {' ',' ',' ','1','3',' ',' ',' ','1','4',' ',' ',' ','1','5',' ',' ',' ','1', '6'},
+	  							 {' '},
+	  							 {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'},
+	  							 {'|','|',spotdisplay[16],spotdisplay[16],spotdisplay[16],spotdisplay[16],'|','|',spotdisplay[17],spotdisplay[17],spotdisplay[17],spotdisplay[17],'|','|',spotdisplay[18],spotdisplay[18],spotdisplay[18],spotdisplay[18],'|','|',spotdisplay[19],spotdisplay[19],spotdisplay[19],spotdisplay[19],'|','|'},
+	  							 {'|','|',spotdisplay[16],spotdisplay[16],spotdisplay[16],spotdisplay[16],'|','|',spotdisplay[17],spotdisplay[17],spotdisplay[17],spotdisplay[17],'|','|',spotdisplay[18],spotdisplay[18],spotdisplay[18],spotdisplay[18],'|','|',spotdisplay[19],spotdisplay[19],spotdisplay[19],spotdisplay[19],'|','|'},
+	  							 {'|','|',spotdisplay[16],spotdisplay[16],spotdisplay[16],spotdisplay[16],'|','|',spotdisplay[17],spotdisplay[17],spotdisplay[17],spotdisplay[17],'|','|',spotdisplay[18],spotdisplay[18],spotdisplay[18],spotdisplay[18],'|','|',spotdisplay[19],spotdisplay[19],spotdisplay[19],spotdisplay[19],'|','|'},
+	  							 {'|','|',spotdisplay[16],spotdisplay[16],spotdisplay[16],spotdisplay[16],'|','|',spotdisplay[17],spotdisplay[17],spotdisplay[17],spotdisplay[17],'|','|',spotdisplay[18],spotdisplay[18],spotdisplay[18],spotdisplay[18],'|','|',spotdisplay[19],spotdisplay[19],spotdisplay[19],spotdisplay[19],'|','|'},
+	  							 {' ',' ',' ','1','7',' ',' ',' ',' ','1','8',' ',' ',' ',' ','1','9',' ',' ',' ',' ','2', '0'},
+	  							 {' '},
+	  							 {'_','_','_','_','_','_','_','_'},
+	  							 {'|','|',spotdisplay[20],spotdisplay[20],spotdisplay[20],spotdisplay[20],'|','|'},
+	  							 {'|','|',spotdisplay[20],spotdisplay[20],spotdisplay[20],spotdisplay[20],'|','|'},
+	  							 {'|','|',spotdisplay[20],spotdisplay[20],spotdisplay[20],spotdisplay[20],'|','|'},
+	  							 {'|','|',spotdisplay[20],spotdisplay[20],spotdisplay[20],spotdisplay[20],'|','|'},
+	  		                     {' ',' ',' ','2','1'}};
+
+
+	  		for (int i =0; i < 41; i ++)
+	  		{
+	  			for (int j =0; j < 27; j++)
+	  			{
+	  				cout << grid[i][j];
+	  			}
+
+	  			cout << endl;
+	  		}
+
 } // end of displayAll
 
 
