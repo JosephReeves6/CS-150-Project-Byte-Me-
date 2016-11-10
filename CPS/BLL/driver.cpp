@@ -15,12 +15,14 @@
 #include "Car.h"  ////// changed
 #include "DataRetriever.h" //// changed
 #include <list>
+#include <queue>
 
 using namespace std;
 void displayAll();
 bool leaveSpot(int x);
 int getSpot( Car x);
 Car newuser(int ID);
+queue<int> waitqueue;
 
 void userInput(Car car);
 
@@ -30,6 +32,7 @@ int main(void){
     int j = 0;
     Car tempCar;
     DataRetriever Data; //// changed
+    
     
     list<Car> carList = Data.GetAllCarsInfo();/*****a function that returns the list of cars from XML File****/   /// get all spots ????
     string IDs[100]; //array of IDs for security purposes
@@ -190,8 +193,9 @@ void userInput(Car car)
     {
         case 1:
         {
-            int s = getSpot(car); //////////????????
-            cout <<"your spot is "<< s << endl;  //////////// changed
+            int s = getSpot(car, waitqueue); //////////????????
+            if (s != -1)
+                cout <<"your spot is "<< s << endl;  //////////// changed
         }
             break;
             
@@ -200,7 +204,7 @@ void userInput(Car car)
             int x;
             cout << "Enter the spot you are leaving:" << endl;
             cin >> x;
-            leaveSpot(x);  /////////// ????????????
+            leaveSpot(x, waitqueue);  /////////// ????????????
         }
             break;
             
