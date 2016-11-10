@@ -10,7 +10,6 @@
  #include "Spot.h"
 
 using namespace std;
-std::queue<int> myqueue;
 
 
 /****************prints out all of the currently available spots in the lot**************************/
@@ -111,15 +110,15 @@ void displayAll()
 /*input is an integer to represent the spot that is being left returns 
 1 to confirm that the person is leaving a valid spot returns 0 if it was not a valid spot*/
 /***************************************** fucntion to leave a spot **********************************/
-bool leaveSpot(int x) // int x is the id of the person leaving  
+bool leaveSpot(int x, queue<int>& myqueue) // int x is the spot of the person leaving  
 {
    
 	DataRetriever dataB;
-	list<Spot> spotsList_2 = dataB.UpdateStatus(x,0); // x = id and 0 equals status which means spot is  now  open 
+	list<Spot> spotsList_2 = dataB.UpdateStatus(x,0); // x = spot id and 0 equals status which means spot is  now  open 
 	
 	if ( ! myqueue.empty() )
 	{
-	cout <<"Person with id"<<myqueue.front()<<"was removed from waitlist. Spot was available"<<endl; 
+	cout <<"Person with id"<<myqueue.front()<<"was removed from waitlist. Spot "<< x << " was available"<<endl; 
 	dataB.UpdateStatus(x, 1); // added
 	myqueue.pop();
     //return spot.GetId(); ?? 
@@ -131,9 +130,9 @@ bool leaveSpot(int x) // int x is the id of the person leaving
 
 /*returns the next available spot or 0 if there are no spots available */
 /*************************fucntion that gets a spot for the user ***********************************/ 
-int getSpot(Car x)
+int getSpot(Car x, queue<int>& myqueue)
 {
-    string wait;;
+    string wait;
  	DataRetriever findSpot;
 	list<Spot> spotsList_3 = findSpot.GetAllSpots();
 
@@ -152,25 +151,26 @@ int getSpot(Car x)
 
 
     //********************** spot closed ***************************
-	 if ( spot.GetStatus() == 1)
-        {
-            
-            cout <<"The spot you wish to get is not available."<< endl;
+	    cout <<"The spot you wish to get is not available."<< endl;
             cout <<"Do you wish to wait for the spot to open ? (yes or no)"<<endl;
             cin >> wait ;
           
-            if ( wait == "yes")
+            do 
+	    {
+	    if ( wait == "yes")
           	{
-           		myqueue.push (spot.GetId());  /////// id of the car 
+           		myqueue.push (x.getID());  /////// id of the car 
             		cout << " You were added to the waitlist. Please wait for your spot to open "<< endl;
+			return -1;
           	}// end of if
 		 
             else if( wait == "no")
-            		return 0 ;
+            		return -1 ;
           
             else
             		cout <<" Input wasnt recognized. Please input a valid argument" << endl;
-	} // end of if
+	    } while (true);
+	
         
 	return -1;
  
