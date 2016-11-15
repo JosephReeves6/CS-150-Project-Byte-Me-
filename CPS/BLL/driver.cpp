@@ -33,8 +33,8 @@ using namespace std;
 
 //functions from InputFunctions.cpp file
 void displayAll();
-bool leaveSpot(int x, queue<int> myqueue);
-int getSpot( Car x, queue<int> myqueue);
+bool leaveSpot(int x, queue<int>& myqueue);
+int getSpot( Car x, queue<int>& myqueue);
 
 Car newuser(int ID);
 queue<int> waitqueue;
