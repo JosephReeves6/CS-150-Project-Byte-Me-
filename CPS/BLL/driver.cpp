@@ -1,54 +1,72 @@
 // Name: driver.cpp
-// Car Parking Service
+// Car Parking Service Simulation
 // Author: Byte Me
 // Created on October 9, 2016
+//
+// This program will simulate a parking service which allows users secure entry/
+// the ability to get and leave spots/ as well as the ability to display the entire
+// parking lot.
 //
 // In the following file, it will ask if the user is new or returning.
 // In the case that it is a new user, the program will assign a new ID and
 // create an object for the users' car to store in the data base. If it a
-// returning user,the program will ask for the user's ID*/
-//
+// returning user,the program will ask for the user's ID and password
+// The next step is to prompt the user with three options
+//      displayAll  - which displays the parking lot
+//      getSpot     - which returns the next open spot
+//          if no open spot is availiable the user can choose to go
+//          into a queue and wait for a spot to open up
+//      leaveSpot   - which causes the spot to become vacant in the database
+// The program will continue to run until a user ends it.
 
 #include <iostream>
 #include <istream>
-#include "Spot.h" //////// changed
-#include "Car.h"  ////// changed
-#include "DataRetriever.h" //// changed
+#include "Spot.h"           //include the Spot class
+#include "Car.h"            //include the Car class
+#include "DataRetriever.h"  //include the DataRetriever class
 #include <list>
 #include <queue>
 
 using namespace std;
+
+//FUNCTION DECLARATIONS
+
+//functions from InputFunctions.cpp file
 void displayAll();
-bool leaveSpot(int x);
-int getSpot( Car x);
+bool leaveSpot(int x, queue<int> myqueue);
+int getSpot( Car x, queue<int> myqueue);
+
 Car newuser(int ID);
 queue<int> waitqueue;
-
 void userInput(Car car);
 
+
+//begin main function
 int main(void){
     bool running = true;
     int choice, tempID;
     int j = 0;
     Car tempCar;
-    DataRetriever Data; //// changed
+    DataRetriever Data; 
     
     
-    list<Car> carList = Data.GetAllCarsInfo();/*****a function that returns the list of cars from XML File****/   /// get all spots ????
-    string IDs[100]; //array of IDs for security purposes
+    list<Car> carList = Data.GetAllCarsInfo();/*****a function that returns the list of cars from XML File****/ 
+    string IDs[100]; //array of passwords with index as ID for security purposes
     
+    //set all initial passwords to "/0"
     for (int i = 0; i < 100; ++i) {
         IDs[i] = "/0";
     }
     
-    //set IDs from carList to true
+    //set Passwords from carList with the ID as the index
     for (list<Car>::iterator i = carList.begin(); i != carList.end() ; ++i)
     {
         IDs[i->getID()] = i->getPass();  /// changed
     }
     
     
-    //Main Menu for program
+    //Main interface for parking lot users
+    //will not terminate until prompted by user
     do {
         cout << "Welcome!" << endl;
         cout << "Please select the following:\n" << endl;
@@ -58,9 +76,15 @@ int main(void){
         
         cin >> choice;
         
-        //Ask user if they have app before or would like to exit app
+       
         switch (choice)
         {
+                /*
+                    Returning User:
+                    -Get ID from user and check to make sure it is a valid ID
+                    -Retrieve Car object based on ID, and ask user to input the password
+                    -verification complete, move forward to user input
+                */
             case 1:
             {
                 cout << endl << "Login:\n" << endl;
@@ -68,11 +92,11 @@ int main(void){
                 cin >> tempID;
                 
                 //check if ID is in the system
-                if (tempID > 999 || IDs[tempID] == "/0") //// changed to true
+                if (tempID > 999 || IDs[tempID] == "/0") 
                 {
                     cout << "Error: Invalid User ID" << endl;
                 }
-                else
+                else //ID is valid
                 {
                     cout << "Valid user ID. Retrieving Information" << endl;
                     
@@ -108,12 +132,18 @@ int main(void){
                 }
             }
                 break;
+                
+            /*
+                    New User:
+                    -send a valid ID to the newuser function which creates a Car object for the new user
+                    -call the user input function
+                */
             case 2:
             {
                 cout << endl << "Sign up:\n" << endl;
                 
                 //get a new ID to send to the user that is not already active
-                while (IDs[j] != "/0") /// changed to true
+                while (IDs[j] != "/0") 
                     j++;
                 
                 //create a new car for the user
@@ -134,7 +164,7 @@ int main(void){
                 
             }
                 break;
-            case 3:
+            case 3://exit
                 running = false; //Exits app if selected
                 break;
             default:
@@ -146,6 +176,11 @@ int main(void){
     return 0;
 }
 
+/*
+    FUNCTION newuser takes a valid ID as input, which will be displayed to the new user as their
+    new ID. The User is then prompted to fill out the various aspects of the Car class and finally
+    a Car object is created with teh user's inputs and returned at the end of the function. 
+*/
 Car newuser(int ID)
 {
     Car car;
@@ -153,22 +188,26 @@ Car newuser(int ID)
     string type, pass;
     int size;
     
+    //display the new user's ID
     cout << "Your driver ID is: " << ID;
     cout << endl;
     
+    //get car type from new user
     cout << "Please enter type of car: ";
     cin >> type;
     cout << endl;
     
+    //get car size from new user
     cout << "Please enter size compact(0) or normal(1) or oversized(2): ";
     cin >> size;
     cout << endl;
     
+    //get password from new user
     cout << "Please enter a password with 7 characters: ";
     cin >> pass;
     cout << endl;
     
-    //call function
+    //create a Car object with the given new user inputs
     car.setID(ID);
     car.setType(type);
     car.setSize(size);
@@ -177,6 +216,16 @@ Car newuser(int ID)
     return car;
 }
 
+
+/*
+    FUNCTION userInput takes the currents user's Car object as input and displays the user interface
+    the user is prompted to choose between 4 selections
+        displayAll  - which displays the parking lot
+        getSpot     - which returns the next open spot
+            if no open spot is availiable the user can choose to go
+            into a queue and wait for a spot to open up
+        leaveSpot   - which causes the spot to become vacant in the database
+*/
 void userInput(Car car)
 {
     int choice;
@@ -187,30 +236,33 @@ void userInput(Car car)
     cout << "3 - Print all Spots" << endl;
     cout << "4 - Leave the program" << endl;
     
-    cin >> choice; /////////////// changed
+    cin >> choice; 
     
     switch(choice)
     {
+        //make a call to the function getSpot and return the next open spot and display to the user
         case 1:
         {
-            int s = getSpot(car, waitqueue); //////////????????
+            int s = getSpot(car, waitqueue); 
             if (s != -1)
-                cout <<"your spot is "<< s << endl;  //////////// changed
+                cout <<"your spot is "<< s << endl;  
         }
             break;
-            
+        //prompt the user to enter the spot they are leaving then call leaveSpot to update that spot's 
+        //status in the database
         case 2:
         {
             int x;
             cout << "Enter the spot you are leaving:" << endl;
             cin >> x;
-            leaveSpot(x, waitqueue);  /////////// ????????????
+            leaveSpot(x, waitqueue);  
         }
             break;
-            
+        //display all spots and the parking structure 
+        //recall userInput so the user can get or leave a spot after seeing the display
         case 3:
         {
-            displayAll(); //////////// ??????????????
+            displayAll(); 
             userInput(car);
         }
             break;
