@@ -273,7 +273,7 @@ void userInput(Car car)
             
         default:
         {
-            cout << "Error: invalid input "<< endl; ///////// changed
+            cout << "Error: invalid input "<< endl; 
             userInput(car);
         }
             break;
