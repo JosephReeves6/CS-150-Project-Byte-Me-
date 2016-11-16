@@ -14,7 +14,8 @@ using namespace std;
 
 /****************prints out all of the currently available spots in the lot**************************/
 void displayAll()
-{
+{		
+	  // declaring a class object 
 	  DataRetriever dataB;
 	  list<Spot> spotsList_1 = dataB.GetAllSpots();
 	
@@ -26,6 +27,8 @@ void displayAll()
       cout<<"****************  PARKING SPOT LIST  ********************"<<endl;
       cout<<"*********************************************************"<<endl;
  
+	 // This section is going through our list of Spots and is printing the ID with its corresponding status
+	 // until it reaches the end of the list. 
 	  for(list<Spot>::iterator it = spotsList_1.begin(); it!= spotsList_1.end(); ++it) 
 	  {
 		    Spot spot = *it;
@@ -114,14 +117,13 @@ bool leaveSpot(int x, queue<int>& myqueue) // int x is the spot of the person le
 {
    
 	DataRetriever dataB;
-	list<Spot> spotsList_2 = dataB.UpdateStatus(x,0); // x = spot id and 0 equals status which means spot is  now  open 
+	list<Spot> spotsList_2 = dataB.UpdateStatus(x,0);
 	
 	if ( ! myqueue.empty() )
 	{
 	cout <<"Person with id"<<myqueue.front()<<"was removed from waitlist. Spot "<< x << " was available"<<endl; 
-	dataB.UpdateStatus(x, 1); // added
+	dataB.UpdateStatus(x, 1);
 	myqueue.pop();
-    //return spot.GetId(); ?? 
 	} 
 
 	return 0;
@@ -140,10 +142,12 @@ int getSpot(Car x, queue<int>& myqueue)
 	{
 	    Spot spot = *it;
           
-     //************** spot open *******************************
+    //************** spot open *******************************
+    //If a spot is open update the status of the parking spot with the users id and input a 1 
+    //which means the spot is taken. 
 	    if (spot.GetStatus() == 0)
        		 {
-           		 findSpot.UpdateStatus(spot.GetId(), 1); // added
+           		 findSpot.UpdateStatus(spot.GetId(), 1);
            		 return spot.GetId();  
         	} // end of if
 		
@@ -151,6 +155,8 @@ int getSpot(Car x, queue<int>& myqueue)
 
 
     //********************** spot closed ***************************
+    //If the program reaches this part it means that there was no avialable spot. Therefore, it as 
+    //the user if it want to wait for a spot to open. Upon request the user is pused into a queue. 
 	    cout <<"The spot you wish to get is not available."<< endl;
             cout <<"Do you wish to wait for the spot to open ? (yes or no)"<<endl;
             cin >> wait ;
@@ -159,7 +165,7 @@ int getSpot(Car x, queue<int>& myqueue)
 	    {
 	    if ( wait == "yes")
           	{
-           		myqueue.push (x.getID());  /////// id of the car 
+           		myqueue.push (x.getID());  
             		cout << " You were added to the waitlist. Please wait for your spot to open "<< endl;
 			return -1;
           	}// end of if
