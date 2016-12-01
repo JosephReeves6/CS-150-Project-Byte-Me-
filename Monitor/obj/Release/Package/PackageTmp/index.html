@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+
+<script type="text/javascript">
+    setTimeout(function() {
+        location = '';
+    }, 10000)
+</script>
+
+<script src="js\jquery-2.1.3.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="css\bootstrap.css">
+ 
+<script>
+    $(document).ready(function () {
+        GetAllEmployees();
+    });
+        function GetAllEmployees() {
+            jQuery.support.cors = true;
+            $.ajax({
+                url: 'API/spot/getall',
+                type: 'GET',
+                dataType: 'json',            
+                success: function (data) {                
+                  //  console.log(data);
+                    WriteResponse(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });        
+        }
+
+    function Update(x) {
+        var id = x.innerHTML;
+        var val = x.className;
+        AddSpot(id, val);
+        
+        location.reload();
+    }
+
+    function AddSpot(id,val) {
+        jQuery.support.cors = true;
+        var spot = { SpotId: id, SpotValue: val };
+        //var employee = {
+        //    ID: $('#txtaddEmpid').val(),
+        //    EmpName: $('#txtaddEmpName').val(),
+        //    EmpDepartment: $('#txtaddEmpDep').val(),
+        //    EmpMobile: $('#txtaddEmpMob').val()
+        //};       
+        
+        $.ajax({
+            url: '/api/spot/put',
+            type: 'Put',
+            data:JSON.stringify(spot),            
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                WriteResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+     
+    function WriteResponse(employees) {
+        var strResult = "";
+         //   "<table><th>EmpID</th><th>Emp Name</th><th>Emp Department</th><th>Mobile No</th>";
+        $.each(employees, function (index, e) {
+            var color = "";
+            if (e.SpotValue == "1")
+                color = "yes";
+            if (e.SpotValue == "0")
+                color = "not";
+                strResult +=
+                    "   <div class=\"col-md-6\"><span OnClick=\"Update(this);\" class= \""+color+"\" >" +
+                    e.SpotId
+                    + " </span> </div>";
+
+        
+        });
+      
+        $("#divResult").html(strResult);
+    }
+
+   
+    </script>
+ 
+
+<html>
+<head>
+  
+
+	
+</head>
+
+
+
+<body  >
+
+
+<div style="margin-left: 25%; margin-right: 25%; background: yellow; width: 50%">
+    <div class="row">
+
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <h1><a title="Home" href="#" id="logo"><label>car parking</label><b>Monitor</b></a>
+            </h1>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-4">
+    </div>
+</div>
+ 
+
+    <div    >
+
+        <br/>
+        <div id="divResult">
+           
+        </div>
+
+    </div>
+
+</body>
+<style>
+    .not {
+        background: red;
+    }
+
+    .yes {
+        background-color: #96c96d;
+    }
+
+    span {
+        display: inline-block;
+        padding: 5px 5px;
+        background-color: #78CCD2;
+        border-radius: 4px;
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        cursor: default;
+        margin-left: 6%;
+        border: 2px #F7EEEE;
+        border-radius: 10px;
+    }
+
+    body {
+        font-size: 70px;
+        text-align: center;
+        font-color: black;
+        font-bold: bold;
+    }
+
+
+    h1 a#logo b {
+        color: #da431c;
+        font-size: 100px;
+    }
+</style>
+</html>

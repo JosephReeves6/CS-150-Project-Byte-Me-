@@ -1,0 +1,14 @@
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.dll.config
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.pdb
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\Newtonsoft.Json.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Net.Http.Formatting.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.WebHost.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\Newtonsoft.Json.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Net.Http.Formatting.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.WebHost.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\obj\Release\CustomerApp.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\obj\Release\CustomerApp.pdb
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\obj\Release\SpotApp.csprojResolveAssemblyReference.cache

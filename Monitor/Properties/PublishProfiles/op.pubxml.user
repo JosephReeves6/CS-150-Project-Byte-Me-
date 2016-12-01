@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\app\LOADXMLASLI\CustomerApp\New folder</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/CustomerApp.dll">
+      <publishTime>12/01/2016 19:31:38</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/14/2014 16:06:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/14/2014 16:06:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/14/2014 16:06:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/14/2014 16:06:33</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css">
+      <publishTime>12/01/2016 09:57:13</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css.map">
+      <publishTime>12/01/2016 09:57:13</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css">
+      <publishTime>12/01/2016 09:57:13</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css.map">
+      <publishTime>12/01/2016 09:57:13</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>12/01/2016 09:57:13</publishTime>
+    </File>
+    <File Include="css/bootstrap.css.map">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css.map">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="data/ParkingStructure.xml">
+      <publishTime>12/01/2016 19:28:19</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/01/2016 19:28:00</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>12/01/2016 19:33:55</publishTime>
+    </File>
+    <File Include="js/angular.min.js">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="js/angular.min.js.map">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="js/app.js">
+      <publishTime>12/01/2016 19:34:34</publishTime>
+    </File>
+    <File Include="js/jquery-2.1.3.min.js">
+      <publishTime>12/01/2016 09:57:14</publishTime>
+    </File>
+    <File Include="js/xml2json.js">
+      <publishTime>12/01/2016 12:00:18</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/14/2014 16:12:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/01/2016 19:31:39</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,23 @@
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.dll.config
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\CustomerApp.pdb
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\Newtonsoft.Json.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Net.Http.Formatting.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.WebHost.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\Newtonsoft.Json.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Net.Http.Formatting.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\bin\System.Web.Http.WebHost.xml
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\obj\Debug\CustomerApp.dll
+C:\app\LOADXMLASLI\CustomerApp\CustomerApp\obj\Debug\CustomerApp.pdb
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\CustomerApp.dll.config
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\CustomerApp.dll
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\CustomerApp.pdb
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\Newtonsoft.Json.xml
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\System.Net.Http.Formatting.xml
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\System.Web.Http.xml
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\bin\System.Web.Http.WebHost.xml
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\obj\Debug\SpotApp.csprojResolveAssemblyReference.cache
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\obj\Debug\CustomerApp.dll
+C:\Users\OmAr-PC2-Local\Downloads\SpotApp (1)\SpotApp\obj\Debug\CustomerApp.pdb
